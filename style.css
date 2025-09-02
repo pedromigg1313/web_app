@@ -1,0 +1,9 @@
+*{padding: 0; margin: 0; box-sizing: border-box; font-family:'Trebuchet MS', 'Arial', sans-serif;}
+
+.link {
+    text-decoration: none;
+}
+
+.link:hover {
+    color: rgba(27, 0, 202, 0.799);
+}
