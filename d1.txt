@@ -1,0 +1,240 @@
+PROJETO WEB APP
+
+- front-end: html, css, js
+- back-end: php
+- banco de dados: mysql
+PÁGINAS PHP
+(1)
+
+- autenticação do usuário > contagem de acesso, bloqueio do usuário(errar nas três vezes), verificação de 1° acesso
+- manutenção de senha
+- cadastro de novos usuários
+
+Entrega: 11/09/2025
+	- disciplinas: back-end
+		       front-end
+	- individual
+	- explicação do código/estrutura do site
+	- disponibilizado no GitHub
+
+ESTRUTURA DE PASTAS
+web_app
+	imagens <
+	css <
+______________________________
+
+Vamos esclarecer o que você quer dizer com "conectar o meu site usando o phpMyAdmin", porque há um pequeno mal-entendido comum aqui:
+
+🔹 O que é o phpMyAdmin?
+
+O phpMyAdmin é uma ferramenta gráfica baseada na web usada para gerenciar bancos de dados MySQL/MariaDB. Ele não é usado diretamente para "conectar seu site", mas sim para:
+
+Criar bancos de dados e tabelas
+
+Inserir, editar e excluir dados
+
+Fazer backup/restauração
+
+Executar queries SQL
+
+✅ O que você provavelmente quer fazer:
+
+Você quer conectar o seu site (feito em PHP, HTML, etc.) ao banco de dados que você gerencia via phpMyAdmin.
+
+Então, vou te mostrar como fazer a conexão do seu site em PHP ao banco de dados MySQL, que você criou ou gerencia pelo phpMyAdmin.
+
+🔧 Exemplo de Conexão com MySQL usando PHP
+<?php
+// Configurações de conexão
+$host = "localhost"; // ou o IP do servidor do banco
+$usuario = "root";   // ou outro usuário do MySQL
+$senha = "";         // senha do usuário
+$banco = "nome_do_banco"; // o banco criado no phpMyAdmin
+
+// Conexão
+$conexao = new mysqli($host, $usuario, $senha, $banco);
+
+// Verifica conexão
+if ($conexao->connect_error) {
+    die("Falha na conexão: " . $conexao->connect_error);
+}
+
+echo "Conectado com sucesso!";
+?>
+
+📌 O que você precisa fazer:
+
+Acesse o phpMyAdmin
+
+Crie um banco de dados (ex: meusite_db)
+
+Crie uma tabela, se necessário
+
+Anote as credenciais de acesso:
+
+Host: normalmente localhost
+
+Usuário: geralmente root (em local), ou um usuário definido por você no servidor
+
+Senha: a do seu usuário MySQL
+
+Nome do banco: o que você criou
+
+Coloque o código de conexão no seu projeto PHP
+
+Geralmente no início do seu script ou em um arquivo separado (conexao.php)
+
+Inclua o arquivo onde necessário
+
+include("conexao.php");
+
+❓ Quer ajuda com algo específico?
+
+Responda com:
+
+Onde está hospedado seu site (localhost, XAMPP, cPanel, HostGator, etc)?
+
+Qual é o erro ou dúvida exata que você está tendo?
+
+Posso te orientar passo a passo com base nisso.
+______________________________
+
+Um site de autenticação de usuário permite que pessoas façam login, se cadastrem, e acessem áreas restritas do site. Para isso funcionar, você precisa de um conjunto de arquivos PHP e um banco de dados (geralmente MySQL, gerenciado via phpMyAdmin).
+
+🔐 FUNCIONALIDADES DE UM SISTEMA DE AUTENTICAÇÃO:
+
+Cadastro de usuário (register.php)
+
+Login do usuário (login.php)
+
+Validação de sessão / áreas restritas (dashboard.php, area_restrita.php, etc.)
+
+Logout (logout.php)
+
+(Opcional) Recuperar senha, validação por e-mail, etc.
+
+📁 ESTRUTURA DE ARQUIVOS BÁSICA
+/ (raiz do seu projeto)
+├── conexao.php          <- Conexão com banco de dados
+├── register.php         <- Cadastro
+├── login.php            <- Login
+├── dashboard.php        <- Área restrita (acesso só se logado)
+├── logout.php           <- Deslogar usuário
+└── banco.sql            <- Script para criar a tabela no phpMyAdmin
+
+🧱 1. banco.sql (crie no phpMyAdmin)
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100),
+    email VARCHAR(100) UNIQUE,
+    senha VARCHAR(255)
+);
+
+🧩 2. conexao.php
+<?php
+$host = 'localhost';
+$usuario = 'root';
+$senha = '';
+$banco = 'autenticacao';
+
+$conexao = new mysqli($host, $usuario, $senha, $banco);
+
+if ($conexao->connect_error) {
+    die("Erro na conexão: " . $conexao->connect_error);
+}
+?>
+
+✍️ 3. register.php (Cadastro de usuário)
+<?php
+include("conexao.php");
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nome = $_POST['nome'];
+    $email = $_POST['email'];
+    $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT); // Senha criptografada
+
+    $sql = "INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)";
+    $stmt = $conexao->prepare($sql);
+    $stmt->bind_param("sss", $nome, $email, $senha);
+
+    if ($stmt->execute()) {
+        echo "Cadastro realizado com sucesso!";
+    } else {
+        echo "Erro ao cadastrar: " . $stmt->error;
+    }
+}
+?>
+
+<form method="POST">
+    Nome: <input type="text" name="nome" required><br>
+    E-mail: <input type="email" name="email" required><br>
+    Senha: <input type="password" name="senha" required><br>
+    <input type="submit" value="Cadastrar">
+</form>
+
+🔐 4. login.php (Login do usuário)
+<?php
+session_start();
+include("conexao.php");
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
+
+    $sql = "SELECT * FROM usuarios WHERE email = ?";
+    $stmt = $conexao->prepare($sql);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+
+    $resultado = $stmt->get_result();
+    if ($resultado->num_rows == 1) {
+        $usuario = $resultado->fetch_assoc();
+
+        if (password_verify($senha, $usuario['senha'])) {
+            $_SESSION['usuario_id'] = $usuario['id'];
+            $_SESSION['usuario_nome'] = $usuario['nome'];
+            header("Location: dashboard.php");
+            exit();
+        } else {
+            echo "Senha incorreta.";
+        }
+    } else {
+        echo "Usuário não encontrado.";
+    }
+}
+?>
+
+<form method="POST">
+    E-mail: <input type="email" name="email" required><br>
+    Senha: <input type="password" name="senha" required><br>
+    <input type="submit" value="Entrar">
+</form>
+
+✅ 5. dashboard.php (Área restrita)
+<?php
+session_start();
+
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
+echo "Bem-vindo, " . $_SESSION['usuario_nome'];
+echo "<br><a href='logout.php'>Sair</a>";
+
+🔓 6. logout.php
+<?php
+session_start();
+session_destroy();
+header("Location: login.php");
+exit();
+
+✅ Resumo: O que é essencial?
+Arquivo	Função
+conexao.php	Conecta ao banco via phpMyAdmin
+register.php	Cadastra novo usuário
+login.php	Verifica login e cria sessão
+dashboard.php	Página restrita, só entra logado
+logout.php	Destroi a sessão e faz logout
+
+Se quiser, posso gerar todos os arquivos prontos em um .zip, ou te ajudar a colocar isso para funcionar no XAMPP, cPanel, ou outro servidor. Me avise onde você está rodando isso.
