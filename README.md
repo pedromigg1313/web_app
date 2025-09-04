@@ -1,7 +1,7 @@
 # web_app
 Autor: Pedro Miguel
-Turma: 3ª DS
-Instituição de Ensino: Joaquim de Candelária
+- Turma: 3ª DS
+- Instituição de Ensino: Joaquim de Candelária
 _____________
 
 **DESCRIÇÃO**
@@ -10,4 +10,4 @@ _____________
 
 **TECNOLOGIAS UTILIZADAS**
 Back-End: Linguagens *JS* e *PHP*
-Front-End: Biblioteca *Bootstrap* e Linguagem *CSS*
+- Front-End: Biblioteca *Bootstrap* e Linguagem *CSS*
