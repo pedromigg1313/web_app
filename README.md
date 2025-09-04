@@ -1,7 +1,5 @@
 # web_app
-Autor: Pedro Miguel
-- Turma: 3ª DS
-- Instituição de Ensino: Joaquim de Candelária
+- Autor: Pedro Miguel - Turma: 3ª DS - Instituição de Ensino: Joaquim de Candelária
 _____________
 
 **DESCRIÇÃO**
@@ -9,5 +7,5 @@ Projeto que apresenta autenticação de usuário(cadastrar e login), com opção
 _____________
 
 **TECNOLOGIAS UTILIZADAS**
-Back-End: Linguagens *JS* e *PHP*
+- Back-End: Linguagens *JS* e *PHP*
 - Front-End: Biblioteca *Bootstrap* e Linguagem *CSS*
