@@ -12,7 +12,7 @@
     <div class="container d-flex align-items-center justify-content-center vh-100">
         <div class="card p-2">
             <h3 class="mb-4 text-center"><i class="bi bi-door-open-fill"></i>Entrar</h3>
-            <form id="cadastroForm">
+            <form id="cadastroForm" action="login_cad.php" method="post">
                 <div class="mb-3">
                     <label for="email" class="form-label">E-mail</label>
                     <input type="email" class="form-control focus-ring focus-ring-dark " id="email" placeholder="Digite o seu e-mail" required style="border-color: black;"/>
