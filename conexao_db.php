@@ -1,12 +1,12 @@
 <?php 
-
+    $host = 'localhost';
     $usuario = 'root';
     $senha = '';
     $database = 'bd_crud_php';
-    $host = 'localhost';
 
-    $mysqli = new mysqli($usuario, $senha, $database, $host);
+    $conexao = new mysqli($host, $usuario, $senha, $database);
 
-    if($mysqli->connect_errno) {
-        die("Falha ao conectar ao MySQL: " . $mysqli->connect_error); 
-}
+    if($conexao->connect_error) {
+        die("Falha na conexão: " . $conexao->connect_error); 
+    }
+?>

@@ -3,68 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Esqueci a Senha</title>
+    <title>Alterar Senha</title>
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container d-flex align-items-center justify-content-center vh-100">
-        <div class="card p-2">
-            <h3 class="mb-4 text-center"><i class="bi bi-door-open-fill"></i>Esquecia a senha</h3>
-            <form id="cadastroForm">
-                <div class="mb-3 position-relative">
-                    <label for="senha" class="form-label">Senha Atual</label>
-                    <input type="password" class="form-control focus-ring focus-ring-dark" id="senha" placeholder="Crie uma Senha" required style="border-color: black;"/>
-                    <i class="bi bi-eye-fill position-absolute" id="togglePassword" style="top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer;"></i>
-                </div>
-                <div class="mb-3 position-relative">
-                    <label for="senha" class="form-label">Nova Senha</label>
-                    <input type="password" class="form-control focus-ring focus-ring-dark" id="senha" placeholder="Crie uma Senha" required style="border-color: black;"/>
-                    <i class="bi bi-eye-fill position-absolute" id="togglePassword" style="top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer;"></i>
-                </div>
-                <div class="mb-3 position-relative">
-                    <label for="senha" class="form-label">Confirmar</label>
-                    <input type="password" class="form-control focus-ring focus-ring-dark" id="senha" placeholder="Crie uma Senha" required style="border-color: black;"/>
-                    <i class="bi bi-eye-fill position-absolute" id="togglePassword" style="top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer;"></i>
-                </div>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="button" class="btn btn-clear me-md-2" id="btnLimpar">
-                        <i class="bi bi-eraser-fill"></i> Limpar
-                    </button>
-                    <button type="submit" class="btn btn-dark text-white">Validar</button>
-                </div>
-            </form>
-            <div class="mt-3 text-center">
-                <a href="entrar.php" class="link small">Entrar</a>
+    <nav class="navbar bg-black bg-opacity-10 border-bottom border-black">
+        <div class="container-fluid">
+            <a class="h3" href="#" style="text-decoration: none; font-weight: bolder;">WEB APP</a>
+            <button class="btn btn-primary btn-sm" onclick="document.documentElement.setAttribute('data-bs-theme', document.documentElement.getAttribute('data-bs-theme') === 'dark' ? 'light' : 'dark')">Alternar Tema</button>
+        </div>
+    </nav>
+    <div class="container mt-3 pb-2 bg-black bg-opacity-25 rounded-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h3 class="text-center mb-4 mt-2" style="font-weight: bolder">Alterar Senha</h3>
+                
+                <?php
+                // Mensagens de erro
+                if (isset($_GET['error'])) {
+                    $errors = [
+                        1 => 'As novas senhas não coincidem!',
+                        2 => 'Senha atual incorreta!',
+                        3 => 'Erro ao atualizar senha!',
+                        4 => 'Preencha todos os campos!'
+                    ];
+                    echo '<div class="alert alert-danger">' . $errors[$_GET['error']] . '</div>';
+                }
+                ?>
+                
+                <form action="modi_senha_action.php" method="POST">
+                    <div class="mb-3">
+                        <label for="senha_atual" class="form-label">Senha Atual</label>
+                        <input type="password" class="form-control" id="senha_atual" placeholder="Sua senha atual" name="senha_atual" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nova_senha" class="form-label">Nova Senha</label>
+                        <input type="password" class="form-control" id="nova_senha" placeholder="Digite a nova senha" name="nova_senha" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirmar_senha" class="form-label">Confirmar Nova Senha</label>
+                        <input type="password" class="form-control" id="confirmar_senha" placeholder="Confirme a nova senha" name="confirmar_senha" required>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="mostrarSenhas" onclick="
+                            document.getElementById('senha_atual').type = this.checked ? 'text' : 'password';
+                            document.getElementById('nova_senha').type = this.checked ? 'text' : 'password';
+                            document.getElementById('confirmar_senha').type = this.checked ? 'text' : 'password';
+                        ">
+                        <label class="form-check-label" for="mostrarSenhas">Mostrar senhas</label>
+                    </div>
+                    
+                    <a href="entrar.php" class="" style="text-decoration: none">Voltar para login</a>
+                    <br><br>
+                    <button type="submit" class="btn btn-primary w-100 mb-4">Alterar Senha</button>
+                </form>
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <script>
-        // Função para alternar a visibilidade da senha
-        document.getElementById('togglePassword').addEventListener('click', function() {
-            const senhaInput = document.getElementById('senha');
-            const type = senhaInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            senhaInput.setAttribute('type', type);
-            
-            // Alternar ícone
-            this.classList.toggle('bi-eye-fill');
-            this.classList.toggle('bi-eye-slash-fill');
-        });
-
-        // Função para limpar os campos
-        document.getElementById('btnLimpar').addEventListener('click', function() {
-            document.getElementById('email').value = '';
-            document.getElementById('senha').value = '';
-        });
-
-        // Prevenir envio do formulário para demonstração
-        document.getElementById('cadastroForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Formulário enviado com sucesso!');
-        });
-    </script>
 </body>
 </html>
