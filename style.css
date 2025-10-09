@@ -1,4 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Kulim+Park:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600;1,700&family=Oswald:wght@200..700&display=swap');
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Kulim+Park:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-*{padding: 0; margin: 0; box-sizing: border-box; font-family: "Kulim Park";}
+*{padding: 0; margin: 0; box-sizing: border-box; font-family: "Roboto", sans-serif;}
+
+#carouselExampleIndicators {
+  height: 300px;
+  overflow: hidden;
+}
+
+#carouselExampleIndicators .carousel-inner,
+#carouselExampleIndicators .carousel-item,
+#carouselExampleIndicators .carousel-item img {
+  height: 100%; 
+  object-fit: cover;
+}
+
+.carousel-control-prev, .carousel-control-next {
+    margin-top: 125px;
+    margin-left: 40px;
+    margin-right: 40px;
+    height: 40px;
+}
+

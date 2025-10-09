@@ -23,7 +23,7 @@
                 if (isset($_GET['error'])) {
                     $errors = [
                         1 => 'E-mail ou senha incorretos!',
-                        3 > 'Conta bloqueada! Tente novamente em 30 minutos.'
+                        3 => 'Conta bloqueada! Tente novamente em 30 minutos.'
                     ];
                     echo '<div class="alert alert-danger">' . $errors[$_GET['error']];
                     
