@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 29/10/2025 às 04:20
+-- Tempo de geração: 29/10/2025 às 04:21
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -24,47 +24,39 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `usuarios`
+-- Estrutura para tabela `eventos`
 --
 
-CREATE TABLE `usuarios` (
-  `id` int(11) NOT NULL,
-  `login` varchar(30) DEFAULT NULL,
-  `senha` varchar(128) DEFAULT NULL,
-  `nome` varchar(120) DEFAULT NULL,
-  `tipo` char(1) DEFAULT NULL,
-  `quant_acesso` int(11) DEFAULT 0,
-  `status` char(1) DEFAULT 'A',
-  `tentativas_login` int(11) DEFAULT 0,
-  `bloqueado_ate` datetime DEFAULT NULL
+CREATE TABLE `eventos` (
+  `id_evento` int(11) NOT NULL,
+  `nome` varchar(120) NOT NULL,
+  `descricao` varchar(500) NOT NULL,
+  `local` varchar(200) NOT NULL,
+  `data` date NOT NULL,
+  `hora` time NOT NULL,
+  `capacidade` int(11) DEFAULT NULL,
+  `imagem` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `usuarios`
---
-
-INSERT INTO `usuarios` (`id`, `login`, `senha`, `nome`, `tipo`, `quant_acesso`, `status`, `tentativas_login`, `bloqueado_ate`) VALUES
-(6, 'user@gmail.com', '123', 'user', '1', 6, 'A', 0, NULL);
 
 --
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices de tabela `usuarios`
+-- Índices de tabela `eventos`
 --
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `eventos`
+  ADD PRIMARY KEY (`id_evento`);
 
 --
 -- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT de tabela `usuarios`
+-- AUTO_INCREMENT de tabela `eventos`
 --
-ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+ALTER TABLE `eventos`
+  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
