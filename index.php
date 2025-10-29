@@ -13,16 +13,11 @@ if (isset($_GET['success'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar-se</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css?v=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar bg-black bg-opacity-10 border-bottom border-black">
-        <div class="container-fluid">
-            <a class="h3" href="#" style="text-decoration: none; font-weight: bolder;">WEB APP</a>
-            <button class="btn btn-primary btn-sm" onclick="document.documentElement.setAttribute('data-bs-theme', document.documentElement.getAttribute('data-bs-theme') === 'dark' ? 'light' : 'dark')">Alternar Tema</button>
-        </div>
-    </nav>
+    <?php include 'estrutura/navbar.php' ?>
     <div class="container mt-3 pb-2 bg-black bg-opacity-25 rounded-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
