@@ -12,7 +12,7 @@
 
 <body>
     <?php include 'estrutura/navbar.php' ?>
-    <div class="w-full px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="w-full px-4 sm:px-6">
 
         <!-- CARD COM ÍCONE -->
         <div class="bg-white rounded-xl shadow-lg p-8 max-w-md mx-auto border border-gray-100">
@@ -42,6 +42,7 @@
             </div>
         </div>
 
+<iframe src="https://www.google.com/maps/embed?pb=!4v1761851778899!6m8!1m7!1s-DHgBOnY57_ibaECgV-zbQ!2m2!1d-23.2495269115043!2d-45.89823607510687!3f175.89669269250123!4f2.0990544929426846!5f0.7820865974627469" width="600" height="450" style="border-radius: 10px"; allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"

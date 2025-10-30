@@ -10,43 +10,44 @@ if (!isset($_SESSION['email'])) {
 
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Área Logada</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="css/style.css?v=1.0">
+    <link rel="stylesheet" href="css/style.css?v=4.1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-
 <body>
     <?php include 'estrutura/navbar.php' ?>
     <div class="container mt-5">
         <div class="row justify-content-center align-items-center">
             <div class="col-md-6 text-center">
-                <div class="alert alert-success">
-                    <h4>Bem vindo, <b>@<?php echo $_SESSION['nome']; ?></b>!</h4>
+                <div class="bg-green-400 rounded-sm shadow-sm py-3 mb-2">
+                    <h4 class="text-xl text-blue-600">
+                        Bem vindo, <span class="fw-bolder">@<?php echo $_SESSION['nome']; ?></span>!
+                    </h4>
                 </div>
                 <div class="container">
                     <div class="row">
                         <div class="col-6">
                             <form action="logout.php" method="POST">
-                                <button type="submit" class="btn btn-danger btn-lg"><i
-                                        class="bi bi-arrow-left fs-6"></i>&nbsp;Sair</button>
+                                <button type="submit" class="css-botao btn btn-danger btn-sm"><i
+                                    class="bi bi-arrow-left fs-6"></i>&nbsp;Sair
+                                </button>
                             </form>
                         </div>
                         <div class="col-6">
-                            <button type="submit" class="btn btn-primary btn-lg" onclick="window.location.href='marcar.php'">Marcar Evento</button>
+                            <button type="submit" class="btn btn-primary btn-sm" onclick="window.location.href='marcar.php'">Marcar Evento</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <p class="h3 text-center mt-3"><i class="bi bi-calendar-event fs-4"></i>&nbsp;Principais locais que terão eventos futuramente</p>
+    <p class="h5 text-center mt-3 mx-2"><i class="bi bi-calendar-event fs-5"></i>&nbsp;Principais locais que terão eventos futuramente</p>
     <div class="d-flex justify-content-center align-items-center mt-2">
-        <div id="carouselExampleIndicators" class="carousel slide w-75 rounded">
+        <div id="carouselExampleIndicators" class="carousel slide w-75 rounded border-4 border-gray border-opacity-75">
             <!-- COMEÇO Indicadores -->
             <div class="carousel-indicators">
                 <div class="bg-dark bg-opacity-75" style="border-radius: 5px;">
@@ -64,23 +65,20 @@ if (!isset($_SESSION['email'])) {
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="imagem/img_1.jpg" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
+                    <div class="carousel-caption mb-2">
                         <h5 style="background-color: #0000007e; display: inline; color: white;">Praça Riugi Kojima</h5>
-                        <p></p>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <img src="imagem/img_2.jpg" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
+                    <div class="carousel-caption mb-2">
                         <h5 style="background-color: #0000007e; display: inline; color: white;">Parque da Cidade</h5>
-                        <p></p>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <img src="imagem/img_3.jpg" class="d-block w-100" alt="...">
-                    <div class="carousel-caption">
+                    <div class="carousel-caption mb-2">
                         <h5 style="background-color: #0000007e; display: inline; color: white;">Vicentina Aranha</h5>
-                        <p></p>
                     </div>
                 </div>
             </div>
